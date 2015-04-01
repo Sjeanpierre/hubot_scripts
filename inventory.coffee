@@ -14,7 +14,7 @@
 # Author:
 #   sjeanpierre
 
-service_url = #hubot_http_service_url
+service_url = 172.17.42.1:9292
 
 module.exports = (robot) ->
   robot.hear /whois ((?:[0-9]{1,3}\.){3}[0-9]{1,3}$|i-\w*)/i, (msg) ->
