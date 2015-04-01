@@ -1,4 +1,4 @@
-service_url = #hubot_http_service_url
+service_url = 172.17.42.1:9292
 
 module.exports = (robot) ->
   robot.hear /show email stats for past (\d*) (days|weeks)/i, (msg) ->
