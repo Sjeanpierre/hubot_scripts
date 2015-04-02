@@ -2,9 +2,9 @@ access_key = process.env.RFC_ACCESS_KEY
 secret_key = process.env.RFC_SECRET_KEY
 basic_user = process.env.RFC_BASIC_USER
 basic_pass = process.env.RFC_BASIC_PASS
-rcf_url = process.env.RFC_URL
+rfc_app_url = process.env.RFC_URL
 auth = 'Basic ' + new Buffer(basic_user + ':' + basic_pass).toString('base64');
-rfc_url = "https://#{basic_user}:#{basic_pass}@#{rfc_url}/api/changes"
+rfc_url = "https://#{basic_user}:#{basic_pass}@#{rfc_app_url}/api/changes"
 
 module.exports = (robot) ->
   robot.hear /rfcs/i, (msg) ->
