@@ -14,7 +14,7 @@
 # Author:
 #   sjeanpierre
 
-service_url = '172.17.42.1:9292'
+service_url = 'http://172.17.42.1:9292'
 
 module.exports = (robot) ->
   robot.hear /whois ((?:[0-9]{1,3}\.){3}[0-9]{1,3}$|i-\w*)/i, (msg) ->

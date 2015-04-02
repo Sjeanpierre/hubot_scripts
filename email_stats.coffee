@@ -1,4 +1,4 @@
-service_url = '172.17.42.1:9292'
+service_url = 'http://172.17.42.1:9292'
 
 module.exports = (robot) ->
   robot.hear /show email stats for past (\d*) (days|weeks)/i, (msg) ->
