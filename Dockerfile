@@ -2,7 +2,7 @@ FROM sjeanpierre/hubot-centos
 
 
 COPY hubot /var/hubot/bin/
-WORKDIR /var/docker/
+WORKDIR /var/hubot/
 
 CMD ["./bin/hubot", "--adapter slack"]
 
