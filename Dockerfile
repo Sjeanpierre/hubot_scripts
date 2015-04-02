@@ -1,4 +1,4 @@
-FROM sjeanpierre/hubot-centos
+FROM sjeanpierre/hubot-centos66
 
 
 COPY hubot /var/hubot/bin/
