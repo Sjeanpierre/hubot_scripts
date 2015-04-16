@@ -141,6 +141,7 @@ module.exports = (robot) ->
   class ComplaintMessage extends Message
     constructor: (message) ->
       @message_detail = message.details.complaint_detail
+      console.log("Message details are #{@message_detail}")
       @unique_fields = {Complaint_type: @message_detail.complaint_type, Complaint_date: @message_detail.complaint_date}
 
   class StatMessage
