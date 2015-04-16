@@ -75,7 +75,7 @@ module.exports = (robot) ->
 
 
   processResponse = (type, msg, data) ->
-    console.log("Processing response with the following details, type=#{type},data=#{data}")
+    console.log("Processing response with the following details, type=#{JSON.stringify(type)},data=#{JSON.stringify(data)}")
     if type in ['all', 'stats']
       data = [data]
     for results in data
