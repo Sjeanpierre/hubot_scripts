@@ -120,6 +120,7 @@ module.exports = (robot) ->
           "value": "#{value}",
           "short": true
         })
+      console.log("Prepared response is, #{JSON.stringify(@formatted_fields)}")
       return formatted_fields
 
     format_title: ->
