@@ -75,7 +75,6 @@ module.exports = (robot) ->
 
 
   processResponse = (type, msg, data) ->
-    console.log("Processing response with the following details, type=#{JSON.stringify(type)},data=#{JSON.stringify(data)}")
     if type in ['all', 'stats']
       data = [data]
     for results in data
@@ -141,8 +140,7 @@ module.exports = (robot) ->
 
   class ComplaintMessage extends Message
     constructor: (message) ->
-      @message_detail = message.details.complaint_details
-      console.log("message details are #{@message_detail}")
+      @message_detail = message.details.complaint_detail
       @unique_fields = {Complaint_type: @message_detail.complaint_type, Complaint_date: @message_detail.complaint_date}
 
   class StatMessage
