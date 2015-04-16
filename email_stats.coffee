@@ -79,6 +79,7 @@ module.exports = (robot) ->
       data = [data]
     for results in data
       response = dispatchType(type, results)
+      console.log("Prepared response is, #{JSON.stringify(response)}")
       robot.emit 'slack.attachment',
         message: msg.message
         content:
