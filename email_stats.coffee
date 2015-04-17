@@ -145,6 +145,7 @@ module.exports = (robot) ->
       @message_detail = message.details.complaint_detail
       console.log("Message details are #{JSON.stringify(@message_detail)}")
       @unique_fields = {Complaint_type: @message_detail.complaint_type, Complaint_date: @message_detail.complaint_date}
+      console.log("complaint fields are, #{JSON.stringify(@unique_fields)}")
 
   class StatMessage
     constructor: (message) ->
