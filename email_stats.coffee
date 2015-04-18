@@ -79,7 +79,6 @@ module.exports = (robot) ->
       data = [data]
     for results in data
       response = dispatchType(type, results)
-      console.log("Prepared response is, #{JSON.stringify(response)}")
       robot.emit 'slack.attachment',
         message: msg.message
         content:
@@ -120,7 +119,6 @@ module.exports = (robot) ->
           "value": "#{value}",
           "short": true
         })
-      console.log("Prepared response is, #{JSON.stringify(formatted_fields)}")
       return formatted_fields
 
     format_title: ->
@@ -143,9 +141,7 @@ module.exports = (robot) ->
   class ComplaintMessage extends Message
     constructor: (message) ->
       @message_detail = message.details.complaint_detail
-      console.log("Message details are #{JSON.stringify(@message_detail)}")
       @unique_fields = {Complaint_type: @message_detail.complaint_type, Complaint_date: @message_detail.complaint_date}
-      console.log("complaint fields are, #{JSON.stringify(@unique_fields)}")
 
   class StatMessage
     constructor: (message) ->
