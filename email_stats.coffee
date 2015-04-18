@@ -6,6 +6,7 @@ module.exports = (robot) ->
     count = escape(msg.match[1])
     unit = escape(msg.match[2])
     data = "type=#{type}&count=#{count}&unit=#{unit}"
+    logger(data)
     msg.http("#{service_url}/email_stats")
     .headers(Accept: 'application/json')
     .post(data) (err, res, body) ->
@@ -19,6 +20,7 @@ module.exports = (robot) ->
     type = escape(msg.match[1])
     date = escape(msg.match[2])
     data = "type=#{type}&date=#{date}"
+    logger(data)
     msg.http("#{service_url}/email_stats")
     .headers(Accept: 'application/json')
     .post(data) (err, res, body) ->
@@ -29,11 +31,11 @@ module.exports = (robot) ->
       processResponse(type, msg, data)
 
   robot.hear /show email (complaints|bounces|deliveries|stats) between ((?:1[0-2]|0?[1-9])\/(?:3[01]|[12][0-9]|0?[1-9])\/(?:[0-9]{2})?[0-9]{2}) (?:and|&|&amp) ((?:1[0-2]|0?[1-9])\/(?:3[01]|[12][0-9]|0?[1-9])\/(?:[0-9]{2})?[0-9]{2})/i, (msg) ->
-    console.log('Got the message')
     type = escape(msg.match[1])
     date1 = escape(msg.match[2])
     date2 = escape(msg.match[3])
     data = "type=#{type}&date1=#{date1}&date2=#{date2}"
+    logger(data)
     msg.http("#{service_url}/email_stats")
     .headers(Accept: 'application/json')
     .post(data) (err, res, body) ->
@@ -49,6 +51,7 @@ module.exports = (robot) ->
     count = escape(msg.match[2])
     unit = escape(msg.match[3])
     data = "type=#{type}&count=#{count}&unit=#{unit}"
+    logger(data)
     msg.http("#{service_url}/email_stats")
     .headers(Accept: 'application/json')
     .post(data) (err, res, body) ->
@@ -64,6 +67,7 @@ module.exports = (robot) ->
     count = escape(msg.match[3])
     unit = escape(msg.match[4])
     data = "type=#{type}&email=#{email}&count=#{count}&unit=#{unit}"
+    logger(data)
     msg.http("#{service_url}/email_stats")
     .headers(Accept: 'application/json')
     .post(data) (err, res, body) ->
@@ -73,6 +77,10 @@ module.exports = (robot) ->
       data = JSON.parse(body)
       processResponse(type, msg, data)
 
+
+  logger = (data) ->
+    dateTime = new Date().toISOString()
+    console.log("#{dateTime}:  #{data.split('&')}")
 
   processResponse = (type, msg, data) ->
     if type in ['all', 'stats']
@@ -137,11 +145,13 @@ module.exports = (robot) ->
     constructor: (message) ->
       @message_detail = message.details.delivery_details
       @unique_fields = {Processing_time: @message_detail.processing_time, Delivery_status: @message_detail.status}
+      super(message)
 
   class ComplaintMessage extends Message
     constructor: (message) ->
       @message_detail = message.details.complaint_detail
       @unique_fields = {Complaint_type: @message_detail.complaint_type, Complaint_date: @message_detail.complaint_date}
+      super(message)
 
   class StatMessage
     constructor: (message) ->
